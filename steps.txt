@@ -1,0 +1,62 @@
+📘 Project Workflow: Student Stress Analysis and Prediction
+
+1. Project Setup
+
+First, I created a project folder in VS Code.
+
+Then, I created a virtual environment using:
+
+python -m venv .venv
+
+
+After that, I activated the virtual environment:
+
+.venv\Scripts\activate
+
+
+I created a requirements.txt file and installed all the required dependencies:
+
+numpy  
+pandas  
+matplotlib  
+scikit-learn  
+sqlalchemy  
+pymysql  
+jupyter  
+fastapi  
+uvicorn  
+joblib  
+pydantic  
+
+(This ensures all necessary packages for Data Science, Database handling, and API development are installed.)
+
+2. Database Setup
+
+I connected VS Code editor with SQL database using SQL Tools extension and the MariaDB driver.
+Inside the database, I created 2-3 tables to store data related to student stress analysis and prediction.
+
+3. Machine Learning Pipeline
+
+I applied Machine Learning on the dataset using an ML pipeline.
+During data exploration, I found that the data was highly imbalanced.
+To fix this, I used SMOTE (Synthetic Minority Oversampling Technique) to balance the dataset.
+I also noticed overfitting in the model, so I applied different techniques (like cross-validation, regularization, and hyperparameter tuning) to reduce overfitting.
+After proper preprocessing and model training, the final model was saved using Joblib.
+
+4. Data Storage
+
+Once the model training was completed, I dumped the processed data and trained model.
+This prepared the project for integration with FastAPI.
+
+5. API Development with FastAPI
+
+I created an API using FastAPI where:
+Users can send input data (student details, stress factors, etc.)
+The API validates the input using Pydantic models
+The trained ML model is loaded to make predictions
+The API endpoints were tested using Postman.
+
+6. API Testing
+I sent requests through Postman with JSON input.
+
+The API responded successfully with HTTP Status Code 200 (OK), which confirmed that the prediction pipeline and API were working correctly.

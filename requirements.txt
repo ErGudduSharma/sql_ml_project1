@@ -1,0 +1,12 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+sqlalchemy
+pymysql 
+jupyter
+fastapi 
+uvicorn
+
+joblib
+pydantic
