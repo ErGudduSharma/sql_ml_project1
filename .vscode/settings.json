@@ -2,33 +2,19 @@
     "sqltools.connections": [
         {
             "mysqlOptions": {
-                "authProtocol": "xprotocol",
+                "authProtocol": "default",
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
             "server": "localhost",
-            "port": 33060,
+            "port": 3306,
             "driver": "MySQL",
-            "name": "mysql tools",
-            "database": "demo",
-            "username": "root",
-            "password": "050901",
-            "connectionTimeout": 30
-        },
-        {
-            "mysqlOptions": {
-                "authProtocol": "xprotocol",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 33060,
-            "driver": "MySQL",
-            "name": "db_setup.sql",
-            "database": "demo",
+            "name": "sql_ml",
+            "database": "test_db",
             "username": "root",
             "password": "050901",
             "connectionTimeout": 30
         }
-    ]
+    ],
+    "postman.settings.dotenv-detection-notification-visibility": false
 }

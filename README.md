@@ -1,147 +1,275 @@
-🧠 # Student Stress Analysis & Prediction (SQL + ML + FastAPI)
-📌 ## Overview
+# Student Stress Analyzer
 
-This project aims to analyze and predict student stress levels using Machine Learning integrated with SQL Database and deployed via FastAPI. The project includes data preprocessing, model training, API development, and testing.
+A comprehensive Flask-based web application that analyzes and predicts student stress levels using machine learning. The system provides an intuitive dashboard for visualizing student data, predicting stress levels, and generating detailed reports.
 
-🚀 ## Project Workflow
+## 🌟 Features
 
-1️⃣ Project Setup
+- **User Authentication**: Secure login system with session management
+- **Interactive Dashboard**: Overview of student statistics and stress distribution with dynamic charts
+- **Stress Prediction**: Multi-step form with progress tracking to predict student stress levels
+- **Data Management**: View all student data in a responsive, searchable table
+- **Model Training**: Retrain machine learning models with current data
+- **Performance Reports**: View detailed model performance metrics
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Modern UI**: Clean, professional interface with smooth animations and transitions
+- **Real-time Updates**: Live data updates and training progress monitoring
 
-Created a project folder in VS Code.
-Set up a virtual environment:
+## 🛠️ Technology Stack
 
-python -m venv .venv
+- **Backend**: Flask (Python)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Styling**: Bootstrap 5, Custom CSS with animations
+- **Charts**: Chart.js for data visualization
+- **Machine Learning**: Scikit-learn, XGBoost, Imbalanced-learn
+- **Database**: MySQL with SQLAlchemy ORM
+- **API**: RESTful API design with JSON responses
 
-Activated the environment:
-.venv\Scripts\activate
+## 📊 Project Workflow
 
-Created requirements.txt with all dependencies:
+### 1️⃣ Project Setup & Database Integration
+- Created Flask application with SQLAlchemy for database operations
+- Connected to MySQL database with student stress data
+- Designed database schema with comprehensive student metrics
 
-numpy
-pandas
-matplotlib
-scikit-learn
-sqlalchemy
-pymysql
-jupyter
-fastapi
-uvicorn
-joblib
-pydantic
+### 2️⃣ Machine Learning Pipeline
+- Imported data from SQL database for analysis
+- Addressed class imbalance using SMOTE (Synthetic Minority Over-sampling Technique)
+- Implemented techniques to prevent overfitting:
+  - Regularization
+  - Proper train-test split (80/20)
+  - Stratified cross-validation
+- Trained multiple models including Random Forest and XGBoost
+- Saved model artifacts for production use
 
-2️⃣ Database Setup
+### 3️⃣ Web Application Development
+- Built responsive frontend with modern UI components
+- Implemented smooth page transitions and animations
+- Created interactive dashboard with real-time data visualization
+- Developed multi-step prediction form with progress tracking
 
-Connected VS Code with SQL Database using:
-SQL Tools Extension
-MariaDB Driver
+### 4️⃣ API Development & Integration
+- Built RESTful API endpoints using Flask
+- Implemented input validation and error handling
+- Created comprehensive API documentation
 
-Created 2–3 tables inside the database containing student stress data.
+### 5️⃣ Testing & Deployment
+- Tested API endpoints with Postman
+- Verified prediction accuracy with sample data
+- Prepared application for deployment
 
-Data was related to student stress analysis and prediction.
+## 🚀 Installation & Setup
 
-3️⃣ Machine Learning Pipeline (ml_pipeline.ipynb)
+1. **Clone the repository**:
+```bash
+git clone https://github.com/your-username/student-stress-analyzer.git
+cd student-stress-analyzer
+Create and activate virtual environment:
 
-Imported data from SQL.
-Found that data was highly imbalanced → used SMOTE to balance it.
-Handled overfitting issue by applying techniques like:
-Regularization
-Proper train-test split
-Trained ML Model (Random Forest).
+bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+Install dependencies:
 
-Saved artifacts:
+bash
+pip install -r requirements.txt
+Set up MySQL database:
 
-rf_model.pkl (Trained model)
-scaler.pkl (Scaler object)
+Create a database named test_db
 
-4️⃣ FastAPI Development
+Import the SQL schema from database/schema.sql
 
-Built API using FastAPI (app.py, main.py).
-Created Pydantic model (pydantic_model.py) for input validation.
-Implemented prediction route (predict_routes.py) to load model & return predictions.
-API successfully tested with Postman:
-✅ 200 OK response received
+Configure database connection in app.py if needed:
 
-Predictions returned for given student input data
-
-5️⃣ API Testing
-
-Used Postman to send input JSON requests.
-
-Input:
-
-{
-  "inputs": [
-    {
-      "age": 25,
-      "sleep_hours": 6.5,
-      "work_pressure": 8.0,
-      "anxiety_level": 7.0,
-      "heart_rate": 90,
-      "exercise_hours": 1.0,
-      "diet_quality": 6.0,
-      "smoking": 0,
-      "alcohol": 2.5
-    },
-    {
-      "age": 30,
-      "sleep_hours": 9.0,
-      "work_pressure": 2.0,
-      "anxiety_level": 1.0,
-      "heart_rate": 65,
-      "exercise_hours": 3.0,
-      "diet_quality": 9.0,
-      "smoking": 0,
-      "alcohol": 0.0
-    }
-  ]
+python
+DB_CONFIG = {
+    'user': 'your_username',
+    'password': 'your_password',
+    'host': 'localhost',
+    'database': 'test_db'
 }
+Run the application:
 
-Output:
+bash
+python app.py
+Access the application at http://localhost:5000
 
-{"predictions":["Stressed","Not Stressed"]}
+📖 Usage Guide
+Login: Use the default credentials (admin/admin123)
 
+Dashboard: View overview statistics and interactive charts
 
+Predict Stress: Fill out the multi-step form to predict stress levels
 
-🛠️ Files in Project
+Student Data: Browse all student records in a sortable, filterable table
 
-ml_pipeline.ipynb   → ML training notebook
-pydantic_model.py   → Input validation schema
-predict_routes.py   → API routes for prediction
-app.py              → FastAPI app instance
-main.py             → Entry point to run app
-requirements.txt    → Dependencies
-scaler.pkl          → Saved scaler
-rf_model.pkl        → Saved RandomForest model
-steps.txt           → Project steps
+Reports: View model performance metrics and training history
 
-▶️ Run the Project
+Train Model: Retrain the machine learning model with current data
 
-1. Start FastAPI server
-uvicorn main:app --reload
+🔌 API Endpoints
+POST /api/login - User authentication
 
-2. Test in Browser
-Open:
+GET /api/data - Fetch student data
 
-http://127.0.0.1:8000/docs
+POST /api/predict - Predict stress level from input data
 
-3. Test with Postman
-Choose POST request
+POST /api/predictions/save - Save prediction results to database
 
-Endpoint:
+POST /api/train - Train machine learning model
 
-http://127.0.0.1:8000/predict
+GET /api/train/status - Check training progress
 
+GET /api/model/info - Get model information
 
-Send JSON body → Get stress prediction
+GET /api/reports - Get model performance reports
 
-✅ Features
+🗂️ Project Structure
+text
+student-stress-analyzer/
+├── app.py                 # Main Flask application
+├── index.html            # Frontend HTML file
+├── requirements.txt      # Python dependencies
+├── database/
+│   └── schema.sql        # Database schema and sample data
+├── README.md            # Project documentation
+└── steps.txt            # Setup instructions
 
-SQL Database Integration
+🧠 Machine Learning Details
+Data Preprocessing
+Handled missing values with median/mode imputation
 
-Machine Learning Pipeline with SMOTE
+Scaled numerical features using StandardScaler
 
-Random Forest Model
+Encoded categorical variables using One-Hot Encoding
 
-FastAPI REST API
+Addressed class imbalance with SMOTE
 
-Postman Testing
+Model Training
+Implemented Random Forest and XGBoost classifiers
+
+Used Stratified K-Fold cross-validation (3 folds)
+
+Selected best model based on accuracy metrics
+
+Saved pipeline including preprocessing and model
+
+Evaluation Metrics
+Accuracy: Overall prediction correctness
+
+Cross-validation scores: Model stability assessment
+
+Precision/Recall: Performance on minority classes
+
+🧪 Testing the API
+Using Postman
+Set request method to POST
+
+Use endpoint: http://localhost:5000/api/predict
+
+Set Headers: Content-Type: application/json
+
+Send JSON body:
+
+json
+{
+  "age": 20,
+  "gender": "Male",
+  "academic_performance": 4,
+  "sleep_quality": 3,
+  "anxiety_level": 6,
+  "exercise_hours": 2.5,
+  "study_hours": 5.0,
+  "social_activity": 3,
+  "financial_stress": 7,
+  "part_time_job": "Yes",
+  "screen_time": 8.0,
+  "diet_quality": 5,
+  "smoking": 0,
+  "alcohol": 2.0
+}
+Expected response:
+
+json
+{
+  "prediction": 1,
+  "stress_level": "Medium",
+  "probabilities": [0.2, 0.6, 0.2],
+  "wellness_score": 67
+}
+🚦 Running the Application
+Start the Flask server:
+
+bash
+python app.py
+Access the application:
+
+Open browser to: http://localhost:5000
+
+Login with username: admin, password: admin123
+
+Train the initial model:
+
+Click on "Train Model" in the sidebar
+
+Confirm the training operation
+
+Monitor progress in the interface
+
+Make predictions:
+
+Navigate to "Predict Stress" in the sidebar
+
+Fill out the multi-step form
+
+View the prediction results
+
+🛠️ Troubleshooting
+Database connection errors: Check MySQL service is running and credentials are correct
+
+Module import errors: Verify all dependencies are installed from requirements.txt
+
+Model training failures: Ensure sufficient data exists in the database
+
+Prediction errors: Check that all required fields are provided in the correct format
+
+📈 Future Enhancements
+User registration and role-based access control
+
+Advanced visualization with interactive filters
+
+Export functionality for reports and data
+
+Real-time notifications for training completion
+
+Model versioning and comparison
+
+Automated scheduled retraining
+
+Integration with additional data sources
+
+👥 Contributing
+Fork the repository
+
+Create a feature branch (git checkout -b feature/amazing-feature)
+
+Commit your changes (git commit -m 'Add amazing feature')
+
+Push to the branch (git push origin feature/amazing-feature)
+
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+🙏 Acknowledgments
+Bootstrap for UI components
+
+Chart.js for data visualization
+
+Scikit-learn for machine learning algorithms
+
+Font Awesome for icons
+
+The research community for student stress analysis studies
+
+Note: This application is designed for educational purposes. Always consult with mental health professionals for actual stress assessment and management.
